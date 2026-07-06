@@ -1,0 +1,15 @@
+services:
+
+  backend:
+    build: ./server
+    image: the-gifter-backend:v1
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env
+
+  frontend:
+    build: ./client
+    image: the-gifter-frontend:v1
+    ports:
+      - "3000:80"
