@@ -1,0 +1,2 @@
+export function PageLoader() { return <div className="grid min-h-[50vh] place-items-center"><div className="h-10 w-10 animate-spin rounded-full border-4 border-blush border-t-clay" /></div>; }
+export function ProductSkeleton() { return <div className="animate-pulse"><div className="aspect-square rounded-2xl bg-blush/60"/><div className="mt-4 h-4 w-2/3 rounded bg-blush"/><div className="mt-3 h-4 w-1/3 rounded bg-blush"/></div>; }

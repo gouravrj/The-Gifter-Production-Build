@@ -1,0 +1,2 @@
+import { PackageOpen } from 'lucide-react';
+export default function EmptyState({ title = 'Nothing here yet', text, action }) { return <div className="card grid place-items-center p-12 text-center"><PackageOpen className="mb-4 text-clay" size={40}/><h3 className="text-2xl">{title}</h3>{text && <p className="mt-2 max-w-md text-ink/60">{text}</p>}{action && <div className="mt-6">{action}</div>}</div>; }

@@ -1,0 +1,7 @@
+import { useEffect, useState } from 'react';
+import { Boxes, Clock, ClipboardList, PackageCheck, Sparkles, Truck, Users } from 'lucide-react';
+import toast from 'react-hot-toast';
+import api, { errorMessage } from '../../services/api';
+import { PageLoader } from '../../components/Loading';
+const cards=[['Total products','totalProducts',Boxes,'bg-clay'],['Total users','totalUsers',Users,'bg-sage'],['Total orders','totalOrders',ClipboardList,'bg-ink'],['Pending orders','pendingOrders',Clock,'bg-amber-600'],['Shipped orders','shippedOrders',Truck,'bg-blue-700'],['Delivered orders','deliveredOrders',PackageCheck,'bg-green-700'],['Customization requests','totalCustomizationRequests',Sparkles,'bg-purple-700']];
+export default function Dashboard(){const [stats,setStats]=useState(null);useEffect(()=>{api.get('/admin/dashboard').then(r=>setStats(r.data.stats)).catch(e=>toast.error(errorMessage(e)))},[]);if(!stats)return <PageLoader/>;return <><p className="text-sm font-bold uppercase tracking-widest text-clay">Overview</p><h1 className="mt-2 text-4xl">Good to see you.</h1><p className="mt-2 text-ink/55">Here is what is happening in your studio.</p><div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">{cards.map(([label,key,Icon,color])=><article key={key} className="card flex items-center gap-4 p-5"><div className={`grid h-12 w-12 place-items-center rounded-xl text-white ${color}`}><Icon size={22}/></div><div><p className="text-sm text-ink/55">{label}</p><p className="text-2xl font-bold">{stats[key]}</p></div></article>)}</div></>}

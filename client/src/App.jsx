@@ -1,0 +1,23 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+import Layout from './components/Layout';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminLayout from './components/AdminLayout';
+import Home from './pages/Home';
+import Shop from './pages/Shop';
+import ProductDetail from './pages/ProductDetail';
+import { Login, Signup, VerifyEmail } from './pages/AuthPages';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Account from './pages/Account';
+import NotFound from './pages/NotFound';
+import AdminLogin from './pages/admin/AdminLogin';
+import Dashboard from './pages/admin/Dashboard';
+import Products from './pages/admin/Products';
+import ProductForm from './pages/admin/ProductForm';
+import Orders from './pages/admin/Orders';
+import Customizations from './pages/admin/Customizations';
+import Users from './pages/admin/Users';
+export default function App(){return <BrowserRouter><AuthProvider><CartProvider><Toaster position="top-center" toastOptions={{duration:3500,style:{borderRadius:'14px',background:'#2f2925',color:'#fff'}}}/><Routes><Route element={<Layout/>}><Route index element={<Home/>}/><Route path="shop" element={<Shop/>}/><Route path="products/:id" element={<ProductDetail/>}/><Route path="login" element={<Login/>}/><Route path="signup" element={<Signup/>}/><Route path="verify-email" element={<VerifyEmail/>}/><Route path="cart" element={<Cart/>}/><Route element={<ProtectedRoute/>}><Route path="checkout" element={<Checkout/>}/><Route path="account" element={<Account/>}/></Route><Route path="*" element={<NotFound/>}/></Route><Route path="admin" element={<AdminLogin/>}/><Route element={<ProtectedRoute admin/>}><Route element={<AdminLayout/>}><Route path="admin/dashboard" element={<Dashboard/>}/><Route path="admin/products" element={<Products/>}/><Route path="admin/products/new" element={<ProductForm/>}/><Route path="admin/products/:id/edit" element={<ProductForm/>}/><Route path="admin/orders" element={<Orders/>}/><Route path="admin/customizations" element={<Customizations/>}/><Route path="admin/users" element={<Users/>}/></Route></Route></Routes></CartProvider></AuthProvider></BrowserRouter>}
