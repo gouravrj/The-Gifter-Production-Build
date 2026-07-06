@@ -13,3 +13,5 @@ services:
     image: the-gifter-frontend:v1
     ports:
       - "3000:80"
+    depends_on:
+      - backend
